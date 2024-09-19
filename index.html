@@ -1,191 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulir Order Checkout</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabel Lokasi dengan Gambar dan Nomor Telepon</title>
+    <link rel="stylesheet" href="styles.css" />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f0f0f0;
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+
+      .search-container {
+        width: 100%;
+        margin: 0 auto 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      input[type="text"] {
+        width: 50%;
+        padding: 12px;
+        border-radius: 25px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        outline: none;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      input[type="text"]:hover {
+        border-color: #5a52d6;
+        box-shadow: 0px 4px 10px rgba(108, 99, 255, 0.5);
+        transition: all 0.3s ease;
+      }
+
+      input[type="text"]:focus {
+        border-color: #6c63ff;
+        box-shadow: 0px 4px 8px rgba(108, 99, 255, 0.4);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      th,
+      td {
+        padding: 12px 15px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #6c63ff;
+        color: white;
+        font-size: 16px;
+      }
+
+      td {
+        border-bottom: 1px solid #ddd;
+      }
+
+      tr:hover {
+        background-color: #e6e6ff;
+        transition: background-color 0.3s ease;
+      }
+
+      @media only screen and (max-width: 600px) {
+        input[type="text"] {
+          width: 80%;
         }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        th,
+        td {
+          font-size: 14px;
         }
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-        }
-        .form-group input, 
-        .form-group textarea, 
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            box-sizing: border-box;
-            font-size: 16px;
-            color: #333;
-        }
-        .form-group input:focus, 
-        .form-group textarea:focus, 
-        .form-group select:focus {
-            border-color: #25D366;
-            outline: none;
-            background-color: #fff;
-        }
-        .btn-submit {
-            background-color: #25D366;
-            color: white;
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            width: 100%;
-            margin-top: 10px;
-        }
-        .btn-submit:hover {
-            background-color: #1ebe5a;
-        }
-        .bank-info {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #e9ecef;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-        .bank-info p {
-            margin: 5px 0;
-        }
-        .bank-info strong {
-            display: block;
-            margin-bottom: 10px;
-        }
-        .note {
-            font-style: italic;
-            color: #888;
-            font-size: 14px;
-            margin-top: 15px;
-        }
+      }
+
+      .image-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      /* CSS khusus untuk logo, kecilkan dan tempatkan di tengah */
+      .image-container img#logo {
+        width: 600px; /* Ubah ukuran sesuai keinginan */
+        height: auto;
+        display: block;
+        margin: 0 auto; /* Tempatkan di tengah */
+      }
     </style>
-</head>
-<body>
+    <script>
+      // Function to display current time
+      function displayTime() {
+        const currentTimeElement = document.getElementById("currentTime");
+        const now = new Date();
+        const timeString = now.toLocaleTimeString();
+        currentTimeElement.textContent = "Current Time: " + timeString;
+      }
 
-<div class="container">
-    <h2>Formulir Order Checkout</h2>
-    <form id="checkoutForm">
-        <!-- Informasi Pengirim -->
-        <div class="form-group">
-            <label for="senderName">Nama Pengirim:</label>
-            <input type="text" id="senderName" name="senderName" required>
-        </div>
-        <div class="form-group">
-            <label for="senderPhone">Nomor Telp Pengirim:</label>
-            <input type="tel" id="senderPhone" name="senderPhone" required>
-        </div>
-        <div class="form-group">
-            <label for="pickupAddress">Alamat Pickup:</label>
-            <input type="text" id="pickupAddress" name="pickupAddress" required>
-        </div>
-        
-        <!-- Informasi Barang -->
-        <div class="form-group">
-            <label for="itemCount">Jumlah Barang:</label>
-            <input type="number" id="itemCount" name="itemCount" required>
-        </div>
+      // Function to search table
+      function searchTable() {
+        var input, filter, table, tr, td, i, j, txtValue, found;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("locationTable");
+        tr = table.getElementsByTagName("tr");
 
-        <!-- Informasi Penerima -->
-        <div class="form-group">
-            <label for="receiverName">Nama Penerima:</label>
-            <input type="text" id="receiverName" name="receiverName" required>
-        </div>
-        <div class="form-group">
-            <label for="receiverPhone">Nomor Telp Penerima:</label>
-            <input type="tel" id="receiverPhone" name="receiverPhone" required>
-        </div>
-        <div class="form-group">
-            <label for="fullAddress">Alamat Lengkap Penerima:</label>
-            <textarea id="fullAddress" name="fullAddress" rows="4" required></textarea>
-        </div>
-        
-        <!-- Informasi Pembayaran -->
-        <div class="form-group">
-            <label for="paymentMethod">Cara Bayar:</label>
-            <select id="paymentMethod" name="paymentMethod" required>
-                <option value="Lunas">Lunas</option>
-                <option value="COD">COD (Bayar Tujuan)</option>
-            </select>
-        </div>
+        var noResultRow = document.getElementById("noResultRow");
+        if (noResultRow) {
+          noResultRow.remove();
+        }
 
-        <button type="submit" class="btn-submit">Kirim Order</button>
-    </form>
+        found = false;
+        for (i = 1; i < tr.length; i++) {
+          tr[i].style.display = "none";
+          td = tr[i].getElementsByTagName("td");
+          for (j = 0; j < td.length; j++) {
+            if (td[j]) {
+              txtValue = td[j].textContent || td[j].innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                found = true;
+                break;
+              }
+            }
+          }
+        }
 
-    <!-- Informasi Bank BCA -->
-    <div class="bank-info">
-        <strong>Informasi Pembayaran Bank BCA</strong>
-        <p>Atas Nama: .........</p>
-        <p>No Rekening: ...................</p>
-        <p><em>*DIMOHON UNTUK MENGIRIMKAN BUKTI TRANSFER.</em></p>
+        if (!found) {
+          var newRow = table.insertRow();
+          newRow.id = "noResultRow";
+          var cell = newRow.insertCell(0);
+          cell.colSpan = 6;
+          cell.style.textAlign = "center";
+          cell.innerHTML = "Data tidak ditemukan";
+        }
+      }
+
+      // Update time every second
+      setInterval(displayTime, 1000);
+    </script>
+  </head>
+  <body>
+    <div class="image-container">
+      <img
+        id="logo"
+        src="https://assets.onecompiler.app/42rfqxjyt/42rfqjkuv/kop%20id.png"
+        alt="Logo"
+      />
+    </div>
+    <h2>Daftar Lokasi dengan Nomor Telepon</h2>
+
+    <div class="search-container">
+      <input
+        type="text"
+        id="searchInput"
+        onkeyup="searchTable()"
+        placeholder="Cari lokasi..."
+      />
     </div>
 
-    <p class="note">Mohon pastikan semua informasi yang Anda masukkan sudah benar sebelum mengirim.</p>
-</div>
+    <table id="locationTable">
+      <thead>
+        <tr>
+          <th>Provinsi</th>
+          <th>Kab / Kota</th>
+          <th>Cabang / Perwakilan</th>
+          <th>Kode Wilayah</th>
+          <th>Alamat</th>
+          <th>Nomor Telepon</th>
+        </tr>
+      </thead>
+      <tbody>
+       <tr><td>	Banten	</td><td>	Kabupaten Pandeglang	</td><td>	Pandeglang	</td><td>	PDL	</td><td>	Jl.Raya Labuan KM. 5 Kadulisung Palurahan, Kec.Kaduhejo, Kab,Pandeglang, Prov. Banten (Samping Mts Model/Assae Fitness)	</td><td>	0813-2158-9901, 0838-7452-1552, 	</td></tr>
+<tr><td>	Banten	</td><td>	Kota Serang	</td><td>	Serang	</td><td>	SER	</td><td>	Jl. Jend. Sudirman no. 7, Lingkungan Ciceri Jaya Rt.01 Rw.07, Kec.Serang, Kota Serang, Prov. Banten	</td><td>	0811-3224-0918, (0254) 7822-396, 	</td></tr>
+<tr><td>	Banten	</td><td>	Kota Tangerang	</td><td>	Tangerang	</td><td>	TGR	</td><td>	Jl. Gatot Subroto no.27 Rt.005 Rw.001, Cimone, Kec. Karawaci, Kota Tangerang, Prov. Banten (Samping kampus BSI)	</td><td>	0811-3332-5501, 0811-3227-4746, 	</td></tr>
+<tr><td>	Banten	</td><td>	Kota Tangerang Selatan	</td><td>	Serpong	</td><td>	SRP	</td><td>	Jl. Raya Serpong KM. 8 nomor 88, Kel/Desa Pakulonan, Kec.Serpong Utara, Kota Tangerang Selatan, Prov. Banten	</td><td>	0811-3116-3300, 0877-3180-8703, 0858-8815-9934	</td></tr>
+<tr><td>	Banten	</td><td>	Kota Tangerang Selatan	</td><td>	Ciputat	</td><td>	CPT	</td><td>	Jl. Ir. H. Juanda no.11, Ciputat Timur, Tangerang Selatan	</td><td>	0811-3054-5540, , 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kabupaten Bandung	</td><td>	Rancaekek	</td><td>	RCK	</td><td>	Jalan Raya Rancaekek-Garut Km 21 Kampung Talun, Desa Jelegong,RT 04 RW 07 Kecamatan Rancaekek Kab Bandung	</td><td>	0811-3224-1933, , 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kabupaten Bekasi	</td><td>	Cikarang	</td><td>	CKR	</td><td>	Jl. Yos Sudarso no 94 D Cikarang Utara	</td><td>	0811-3110-3816, 0811-3054-5542, 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kabupaten Ciamis	</td><td>	Ciamis	</td><td>	CMS	</td><td>	Jl. Ciptomangunkusumo no. 20	</td><td>	0852-2344-8413, , 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kabupaten Garut	</td><td>	Leles Garut	</td><td>	LLS	</td><td>	Jl. Stasiun Leles, Kadungora, Kp.Halteu Rt.02 Rw 03, Desa Kadungora, Kec.Kadungora, Kab.Garut, Jabar (Samping Della Mebel)	</td><td>	0812-2232-3519, , 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kabupaten Indramayu	</td><td>	Jatibarang	</td><td>	JTB	</td><td>	Jl. Raya Bulak no. 6, Kec. Jatibarang, Kab. Indramayu	</td><td>	0823-1951-5374, 0823-1737-3666, 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kabupaten Karawang	</td><td>	Cikampek	</td><td>	CKP	</td><td>	Ruko Permata, Jl.Ir. H. Juanda no 1, Sarimulya, Kec. Kota Baru, Kab. Karawang	</td><td>	0811-3192-207, , 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kabupaten Karawang	</td><td>	Karawang	</td><td>	KRW	</td><td>	Jl. AR. Hakim no.11, Kel, Nagarasi, Karawang Barat, Karawang	</td><td>	0811-3201-1684, , 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kabupaten Subang	</td><td>	Pegaden	</td><td>	PGD	</td><td>	Jl. St.Pegaden Baru, Kec.Pegaden, Kab.Subang, Jawa Barat (Depan St.Pegaden)	</td><td>	0821-1380-2271, 0853-2024-6979, 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	KotaTasikmalaya	</td><td>	Tasikmalaya	</td><td>	TSM	</td><td>	Jl. Stasiun no 29 (Sebelah Barat Stasiun Tasikmalaya)	</td><td>	0852-2344-8413, , 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kota Bandung	</td><td>	Kota Bandung Soetta	</td><td>	BDG	</td><td>	Jl. Soekarno Hatta no.411, Karasak, Kec.Astanaanyar, Kota Bandung	</td><td>	0811-3224-1930, , 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kota Bandung	</td><td>	Kota Bandung Stasiun	</td><td>	BDG	</td><td>	Jl. Stasiun Barat no. 3	</td><td>	0811-3056-1013, (022) 8888-6582, 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kota Bandung	</td><td>	Kiaracondong	</td><td>	KRC	</td><td>	Jl. Babakan Sari 2 no. 09, Kiaracondong, Kota Bandung	</td><td>	0811-3224-1933, (022)-20503431, 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kota Banjar	</td><td>	Banjar	</td><td>	BJR	</td><td>	Jl. Stasiun no.1 Banjar (Depan Stasiun Banjar Patroman)	</td><td>	0853-2767-1117, , 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kota Bekasi	</td><td>	Bekasi	</td><td>	BKS	</td><td>	Jl. Ir. H. Juanda no 97, Margahayu, Bekasi timur	</td><td>	(021) 8267-1707, 0811-3110-3816, 0811-3227-4748	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kota Bogor	</td><td>	Bogor	</td><td>	BGR	</td><td>	Jl. Paledang Raya No. 17 Ruko no. 3, Depan St. Bogor (100 m Sebelah Gereja HKBP)	</td><td>	0857-7993-2447, , 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kota Cimahi	</td><td>	Cimahi	</td><td>	CMH	</td><td>	Jl. Hms. Mintareja no. 441, Baros, Cimahi	</td><td>	0811-3117-3080, 0811-3224-1930, 0821-1577-0417	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kota Cirebon	</td><td>	Cirebon (St. Prujakan)	</td><td>	CRB	</td><td>	Stasiun Prujakan, Jl. Nyimas Gandasari, Kelurahan Pekalipan, Kec. Pekalipan,, Cirebon	</td><td>	0877-4264-3430, , 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kota Depok	</td><td>	Depok	</td><td>	DPK	</td><td>	Jl Raya Bogor Km 29, Depok	</td><td>	0857-7993-2447, , 	</td></tr>
+<tr><td>	Jawa Barat	</td><td>	Kabupaten Bogor	</td><td>	Cileungsi	</td><td>	CSI	</td><td>	Jalan Raya Cileungsi – Jonggol Rt.002 Rw.006, Kel/Desa Cileungsi Kidul, Kec. Cileungsi, Kab. Bogor (Bogor Timur).	</td><td>	0811-3330-2683, , 	</td></tr>
+<tr><td>	Jakarta	</td><td>	Jakarta Barat	</td><td>	Jakarta Kota	</td><td>	JAK	</td><td>	Jl. Mangga Dua Raya No.37aa, RT.4/RW.4, Pinangsia, Kec. Taman Sari, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 14430	</td><td>	0811-319-2205, (021)-22693233, 	</td></tr>
+<tr><td>	Jakarta	</td><td>	Jakarta Pusat	</td><td>	Pasar Senen Kios	</td><td>	PSN 1	</td><td>	Jl. Bungur Besar Raya Kios Expedisi Kereta Api no 6 RT19/RW3, Kec.Senen,Jakarta Pusat 12240 (100 m sebelah Polsek Senen)	</td><td>	0811-319-2208, (021) 2148-1774, 	</td></tr>
+<tr><td>	Jakarta	</td><td>	Jakarta Pusat	</td><td>	Pasar Senen Ruko	</td><td>	PSN 2	</td><td>	Jl. Bungur Besar Raya No 63 RT 14 / RW 7, Kel. Gunung Sahari Selatan, Kec.Kemayoran, Jakarta Pusat 10610	</td><td>	0811-319-2215, (021) 2242-4972, 	</td></tr>
+<tr><td>	Jakarta	</td><td>	Jakarta Pusat	</td><td>	Pasar Senen Jaya	</td><td>	PSN-JY	</td><td>	Jl. Pasar Senen Jaya Blok V Lt5 E15 01	</td><td>	0811-3337-8931, , 	</td></tr>
+<tr><td>	Jakarta	</td><td>	Jakarta Selatan	</td><td>	Pasar Minggu	</td><td>	PMU	</td><td>	Jl. Raya Pasar Minggu No. 13 F, Rt.005 Rw.007, Kel. Pejaten Timur, Kec. Pasar Minggu, Jakarta Selatan	</td><td>	0811-3110-1095, , 	</td></tr>
+<tr><td>	Jakarta	</td><td>	Jakarta Timur	</td><td>	Jatinegara	</td><td>	JTN	</td><td>	Jl.Pisangan Lama Barat No.7G, Pisangan Tim., Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13230	</td><td>	(021) 2247-4617, 0811-3192-206, 0811-3112-0609	</td></tr>
+<tr><td>	Jakarta	</td><td>	Jakarta Utara	</td><td>	Jakarta Kp. Bandan	</td><td>	BDN	</td><td>	Jl. Kencur no.43, Kel Ancol, Kec. Pademangan, Jakarta Utara, Kampung Bandan	</td><td>	0811-3112-0607, 0811-319-2209, 0811-3337-8927	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Banjarnegara	</td><td>	Banjarnegara	</td><td>	BJN	</td><td>	Jl Raya Mandiraja Rt.002 Rw 002, Ds. Mandiraja Kulon, Kec. Mandiraja, Kab. Banjarnegara	</td><td>	0812-2011-7789, , 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Banyumas	</td><td>	Purwokerto	</td><td>	PWT	</td><td>	Jl. RA Wiraatmaja no. 18A Rt.03 Rw.03, Kedungwuluh, Kec. Purwokerto Barat, Banyumas	</td><td>	0896-8649-1365, 0813-9201-5780, 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Blora	</td><td>	Cepu	</td><td>	CPU	</td><td>	St. Cepu Jl. Diponegoro no.86, Kel/Desa Balun, Kec. Cepu, Ka. Blora	</td><td>	0812-2705-1800, , 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Boyolali	</td><td>	Boyolali	</td><td>	BYL	</td><td>	Jl. Nasional III, Ds.Sabrangan Rt.1 Rw.1, Kel. Bendan, Kec.Banyudono, Kab.Boyolali (Depan Koramil 08 Banyudono)	</td><td>	0811-3228-8849, (0276) 3282-735, 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Cilacap	</td><td>	Cilacap	</td><td>	CLP	</td><td>	Jl. K.S. Tubun No.1 (Depan Stasiun Cilacap Kota)	</td><td>	0857-2688-9311, 0857-1377-2038, 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Kebumen	</td><td>	Gombong	</td><td>	GBO	</td><td>	Jl. Stasiun Gombong No.74, Kel/Desa Wonokriyo, Kec. Gombong, Kab. Kebumen (Depan Pintu Masuk Stasiun Gombong)	</td><td>	0857-2688-9311, 0857-9983-5438, 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Cilacap	</td><td>	Kroya	</td><td>	KRY	</td><td>	Jl. Stasiun Kroya No.01, Kel/Desa Bajing, Kec. Kroya, Kab. Cilacap (Depan Pintu Masuk Stasiun Kroya)	</td><td>	0857-2688-9311, 0858-0024-4243, 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Grobogan	</td><td>	Ngrombo	</td><td>	NGO	</td><td>	Jl. Raya Purwodadi-Solo no.6, Depok Toroh, Kab.Grobogan (Depan Stasiun Ngrombo)	</td><td>	0878-3259-0277, , 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Cilacap	</td><td>	Sidareja	</td><td>	SDR	</td><td>	Jl. Ampera, Kel/Desa Sidamulya, Kec.Sidareja, Kab.Cilacap	</td><td>	0812-2546-7609, , 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Jepara	</td><td>	Jepara	</td><td>	JPR	</td><td>	Jl. Hugeng Imam Santoso KM. 09, Kel/Desa Ngabul, Kec.Tahunan, Kab.Jepara, Jawa Tengah	</td><td>	0822-2014-0540, 0857-4741-1062, 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Kebumen	</td><td>	Kebumen	</td><td>	KBM	</td><td>	Jl. Stasiun Kebumen, (100 m Barat Stasiun / Selatan Jalan)	</td><td>	0812-8373-0000, , 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Klaten	</td><td>	Klaten	</td><td>	KLT	</td><td>	Jl. Dewi Sartika no 44 (Utara Stasiun Klaten, samping AK Cell)	</td><td>	0877-3496-8870, 0812-2602-461, 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Kudus	</td><td>	Kudus	</td><td>	KDS	</td><td>	Jl. Ronggolawe no. 24 A, Kel/Desa Getas Pejaten, Kec.Jati, Kab.Kudus, Jawa Tengah	</td><td>	0811-3116-3299, , 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Purbalingga	</td><td>	Purbalingga	</td><td>	PBA	</td><td>	Jl. Ahmad Yani Rt.001 Rw. 001, Kel/Desa Kalikabong, Kec. Kalimanah, Kab. Purbalingga (Depan Makam Pahlawan)	</td><td>	0812-2011-7789, 0878-7571-0789, 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Purworejo	</td><td>	Purworejo	</td><td>	PWJ	</td><td>	Jl. Urip Sumoharjo no.67, Purworejo	</td><td>	0813-2632-1450, , 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Purworejo	</td><td>	Kutoarjo	</td><td>	KTA	</td><td>	Stasiun Kutoarjo, Jl. Merpati, Selayan, Semawung Daleman, Kec. Kutoarjo, Kabupaten Purworejo, Jawa Tengah	</td><td>	0813-2632-1450, , 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Rembang	</td><td>	Rembang	</td><td>	RMB	</td><td>	Jl. Raya Pantura No.16, Tireman Barat, Kec.Rembang, Kab. Rembang, Jawa Tengah	</td><td>	0813-1184-0659, 0895-1285-1017, 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kabupaten Sragen	</td><td>	Sragen	</td><td>	SRA	</td><td>	Jl. Tentara Pelajar Kuwung Sari Kidul, Kebayan 3, Sregen Kulon, Kec.Sragen, Kab. Sragen, Jawa Tengah (Timur St. Sragen)	</td><td>	0813-9301-0043, , 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kota Pekalongan	</td><td>	Pekalongan	</td><td>	PKL	</td><td>	Jl. Gajah Mada Ruko no.1 (Samping Pintu Keluar St. Pekalongan)	</td><td>	0852-2805-5454, 0858-6649-8485, 0899-6004-881	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kota Semarang	</td><td>	Semarang Poncol	</td><td>	SRG-PCL	</td><td>	Jl. Imam Bonjol no. 122-124, Sekayu, Semarang Tengah, Kota Semarang ( Area SPBU Poncol 44.501.12/Kota Semarang)	</td><td>	0811-3056-1017, 0811-3192-214, 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kota Semarang	</td><td>	Semarang Siliwangi	</td><td>	SRG	</td><td>	Jl. Jenderal Sudirman No.308, Salamanmloyo, Kec. Semarang Barat, Kota Semarang	</td><td>	0811-3204-5243, (024) 7643-3237, 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kota Surakarta	</td><td>	Solo (Balapan)	</td><td>	SLO	</td><td>	Jl. Wolter Monginsidi 107, Ruko Pasar Ayu No. B19, Solo (Timur Stasiun Balapan)	</td><td>	0811-3192-212, (0271) 2931-371, 	</td></tr>
+<tr><td>	Jawa Tengah	</td><td>	Kota Tegal	</td><td>	Tegal	</td><td>	TGL	</td><td>	Jl. Kol Sugiarto No. 21 Rt.009 Rw.003, Kel/Desa Panggung, Kec. Tegal Timur, Kota Tegal, Jawa Tengah	</td><td>	0819-0515-2555, , 	</td></tr>
+<tr><td>	DI Yogyakarta	</td><td>	Kabupaten Kulon Progo	</td><td>	Wates	</td><td>	WTS	</td><td>	Jl. Soedibyo no. 6 Kec Wates Kab Kulon Progo Prov.DIY (Depan Stasiun Wates, Sebelah Isi Ulang Air Minum)	</td><td>	0821-1044-1918, 0819-3773-3394, 	</td></tr>
+<tr><td>	DI Yogyakarta	</td><td>	Kota Yogyakarta	</td><td>	Yogyakarta	</td><td>	YOG	</td><td>	Jl. Jlagran no.29 B, Pringgokusuman, Gedong Tengen, Yogyakarta (Sebelah Pet Shop Christina)	</td><td>	0822-2036-0941, , 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Banyuwangi	</td><td>	Banyuwangi	</td><td>	BWI	</td><td>	Stasiun Banyuwangi Ketapang, Jl. Gatot Subroto no 36, Ketapang, Kalipuro, Banyuwangi, Jawa Timur (Samping Kiri Pintu Keluar)	</td><td>	0811-3117-3082, 0857-4646-2883, 0852-3005-4511	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Banyuwangi	</td><td>	Kalisetail	</td><td>	KLS	</td><td>	Jl. Raya Kalisetail, Timur Stasiun KA Kalisetail (Depan Toko Enita)	</td><td>	0852-3662-0360, 0857-4679-2878, 0812-1612-9101	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Banyuwangi	</td><td>	Karangasem	</td><td>	BWI-KT	</td><td>	Jl. Stasiun no 98. Komplek Stasiun Karangasem, Bakungan, Glagah, Banyuwangi	</td><td>	0823-3385-9683, 0813-3656-3249, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Banyuwangi	</td><td>	Rogojampi	</td><td>	RJP	</td><td>	Jl. St.Rogojampi, Desa Rogojampi, Kec.Rogojampi, Banyuwangi (Depan Stasiun Rogojampi)	</td><td>	0811-3330-2682, 0812-3014-2997, 0852-5851-7561	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Banyuwangi	</td><td>	Temuguruh	</td><td>	TMH	</td><td>	Jl. Raya Gendoh (Depan Stasiun Temuguruh)	</td><td>	0852-3662-0360, 0852-3662-0360, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Blitar	</td><td>	Kesamben	</td><td>	KSB	</td><td>	Jl. Stasiun Kesamben No. 6	</td><td>	0812-3324-7822, 0823-3302-6325, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Blitar	</td><td>	Wlingi	</td><td>	WLI	</td><td>	Beru, Kec. Wlingi, Kabupaten Blitar (Depan Stasiun Wlingi)	</td><td>	0821-4204-6829, 0852-5916-1199, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Blitar	</td><td>	Bojonegoro	</td><td>	BJN	</td><td>	Jl. Gajahmada No. 50 (Stasiun Bojonegoro)	</td><td>	0852-3083-7970, 0822-2914-5299, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Bondowoso	</td><td>	Bondowoso	</td><td>	BWS	</td><td>	Jl. Kolonel Sugiono no. 12 Rt 10 Rw.002, Desa kademangan, Kec.Bondowoso, Kab. Bondowoso	</td><td>	0875-7370-505, 0878-7338-3362, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Gresik	</td><td>	Gresik	</td><td>	GRS	</td><td>	Jl. KH. Syafi'i, Perumahan Griya Suci Permai Baru (GSPB) Ruko Depan No.3, Dahanrejo, Kel. Suci, Kec. Manyar, Gresik	</td><td>	0813-3122-8598, , 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Jember	</td><td>	Jember	</td><td>	JBR	</td><td>	Stasiun Jember, Jl. Wijaya Kusuma Komp. Pertokoan Kereta Api Blok B No. 16, Kabupaten Jember (Samping Pintu Masuk Stasiun Jember)	</td><td>	0812-3930-5917, , 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Jember	</td><td>	Kalisat	</td><td>	KST	</td><td>	Jl. Garuda no 25, Kec.Kalisat, Jember (Sebelah Timur St. Kalisat)	</td><td>	0878-5737-0505, 0812-1720-4756, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Jember	</td><td>	Rambipuji	</td><td>	RBP	</td><td>	Jl. Dharmawangsa no 3 Krajan Lor, Rambigundam, Kec. Rambipuji, Kab. Jember (Komplek Ruko Samping Stasiun Rambipuji)	</td><td>	0853-3698-8800, 0822-5771-1420, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Jember	</td><td>	Tanggul	</td><td>	SGU	</td><td>	Stasiun Tanggul, Jl.Tratai no 7, Tanggul Kulon, Kec.Tanggul, Jember	</td><td>	0821-4352-7107, , 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Jombang	</td><td>	Jombang	</td><td>	JBG	</td><td>	Jl. Basuki Rahmad no.1 (Sebelah Barat Stasiun Jombang), Komplek Ekspedisi Stasiun Jombang	</td><td>	0817-3793-81, 0858-5555-7329, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Lamongan	</td><td>	Babat	</td><td>	BBT	</td><td>	Jl. Stasiun Babat Perum Kereta Api no.7 (Sebelah Barat St. Babat)	</td><td>	0852-3211-7054, 0858-5960-4454, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Lamongan	</td><td>	Lamongan	</td><td>	LMG	</td><td>	Jl.Laras Liris no.70, Lamongan (Utara Pasar Tingkat/Timur Pasar Ikan)	</td><td>	0821-4332-7883, 0812-3169-5692, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Lumajang	</td><td>	Lumajang	</td><td>	LMJ	</td><td>	Jl.Brigjen Katamso, Ruko Terminal Pasar No J 09 sebelah utara Pasar Baru Lumajang / Tugu Embong Kembar (Selatan Lampu Merah Toga)	</td><td>	0896-2634-4639, 0852-1721-8577, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Madiun	</td><td>	Caruban	</td><td>	CAR	</td><td>	Jl. Pisang no.1 Rt.03 Rw.01, Krajan, Kec. Mejayan, Madiun (Stasiun Caruban 200m Ke Arah Utara)	</td><td>	0812-5250-0060, , 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Malang	</td><td>	Kepanjen	</td><td>	KPJ	</td><td>	Jl. Banurejo, Utara Stasiun Kepanjen, Kec. Kepanjen, Malang	</td><td>	0856-3532-244, 0813-3345-9971, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Mojokerto	</td><td>	Mojokerto	</td><td>	MJK	</td><td>	Jl. Terusan Les Padangan No.462 B	</td><td>	0812-3485-8009, , 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Nganjuk	</td><td>	Kertosono	</td><td>	KTS	</td><td>	Jl. Gatot Subroto (Depan Isi Ulang Air Galon)	</td><td>	0857-3268-0097, 0812-1697-6634, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Nganjuk	</td><td>	Nganjuk	</td><td>	NGA	</td><td>	Jl. Stasiun no.1, Kel. Mangundikaran, Kec. Nganjuk, Kab. Nganjuk	</td><td>	0856-4867-7513, 0812-3150-8563, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Ngawi	</td><td>	Paron	</td><td>	PRN	</td><td>	Jl. Raya Paron Jogorogo Rt.01 Rw.01, Kel. Gelung, Kec. Paron (Samping Kiri Penitipan Sepeda Motor Depan St.Paron/Ngawi - Depan Polsek Paron)	</td><td>	0813-2652-2067, 0896-5810-6952, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Pasuruan	</td><td>	Bangil	</td><td>	BGL	</td><td>	Stasiun Bangil, Jl. Gajah Mada, Gajah, Pogar, Kec. Bangil, Pasuruan	</td><td>	0852-3453-6033, , 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Ponorogo	</td><td>	Ponorogo	</td><td>	PNG	</td><td>	Jl. Soekarno Hatta (Samping Pos Polisi/Selatan Pabrik ES), Ponorogo	</td><td>	0813-5723-9396, 0852-3376-701, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Sidoarjo	</td><td>	Krian	</td><td>	KRN	</td><td>	Jalan Raya Ponokawan 78. Karangpoh - Krian	</td><td>	0857-2131-9400, , 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Sidoarjo	</td><td>	Sidoarjo	</td><td>	SDA	</td><td>	Stasiun Sidoarjo, Jl. Diponegoro no.1 (Didalam Stasiun Sidoarjo, Pintu Keluar Penumpang)	</td><td>	0821-8614-8898, 0817-3793-81, 0857-3050-4600	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Trenggalek	</td><td>	Trenggalek	</td><td>	TLE	</td><td>	Jl. Abdulrahman Saleh no.10, Ruko Kav. I & I, Kel/Desa Surodakan, Kec. Trenggalek, Kabupaten Trenggalek	</td><td>	0822-2198-2948, 0822-2198-2948, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Tuban	</td><td>	Tuban	</td><td>	TBN	</td><td>	Jl. Letda Sucipto no.109, Perbon, Kec. Tuban, Kabupaten Tuban	</td><td>	0858-1445-3458, , 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Tulungagung	</td><td>	Ngunut	</td><td>	NGU	</td><td>	Jl. Stasiun LK 6 (Kauman) Rt. 01 Rw. 02, Gudang Barat Ekspedisi Stasiun Ngunut	</td><td>	0812-1783-2012, 0852-5916-1199, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kabupaten Tulungagung	</td><td>	Tulungagung	</td><td>	TLA	</td><td>	Jl. P.Antasari Kel. Kenayan Kec. Tulungagung, Tulungagung, Gudang Exp. Stasiun Tulungagung	</td><td>	0811-302-092, 0821-5376-1583, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kota Batu	</td><td>	Batu	</td><td>	BTU	</td><td>	Jl. Agus Salim 95 Temas, Kota Batu	</td><td>	0822-2882-4362, 0821-7783-1841, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kota Blitar	</td><td>	Blitar	</td><td>	BLT	</td><td>	Jl. Stasiun Barat, Gudang Stasiun Pintu no 2, Pintu Keluar kendaraan Stasiun Blitar	</td><td>	0852-5916-1199, , 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kota Kediri	</td><td>	Kediri	</td><td>	KDR	</td><td>	Jl. PJKA No. 45 Balowerti Kec. Kota, Kota Kediri Jawa timur, Utara ruko stasiun Kediri (Belakang Rumah Makan Padang Murah)	</td><td>	0821-4376-9388, 0857-3532-2341, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kota Madiun	</td><td>	Madiun	</td><td>	MDN	</td><td>	Jl. Kompol Sunaryo (Timur Stasiun Madiun / Depan Budaran Patung Pendekar)	</td><td>	0813-5723-9396, 0821-4110-3017, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kota Malang	</td><td>	Malang	</td><td>	MLG	</td><td>	Jl. Trunojoyo Selatan, Stasiun Malang Kota Baru, Stasiun Malang Kota Baru	</td><td>	0813-3414-8553, 0821-4058-8035, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kota Mojokerto	</td><td>	Mojokerto (Stasiun)	</td><td>	MJK	</td><td>	Jl. Bhayangkara No.53, Mergelo, Miji, Kec. Prajurit Kulon, Mojokerto (Didalam Stasiun Deretan Pergudangan Ekspedisi St.Mojokerto)	</td><td>	0812-3485-8009, , 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kota Pasuruan	</td><td>	Pasuruan	</td><td>	PSR	</td><td>	Jl. Lombok no.34 C, Trajeng, Panggungrejo, Kota Pasuruan	</td><td>	0822-4779-5483, 821-2446-8815, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kota Probolinggo	</td><td>	Probolinggo	</td><td>	PRB	</td><td>	Stasiun Probolinggo, Jl. KH. Mansyur No 26 ( Barat Pintu Masuk Stasiun Probolinggo)	</td><td>	0813-8239-2006, , 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kota Surabaya	</td><td>	Surabaya Gubeng	</td><td>	SGU	</td><td>	Stasiun Surabaya Gubeng Lama, Jl. Stasiun Gubeng, Kel.Pacar Keling, Kec. Tambaksari, Surabaya, (Sebalah Alfamart)	</td><td>	0811-3192-203, 0812-4993-4004, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kota Surabaya	</td><td>	Surabaya Kalimas	</td><td>	SBY-KMS	</td><td>	Jl. Kalimas Barat no.27, Krembangan Utara, Kec. Pabean Cantikan, Kota SBY, Jawa Timur	</td><td>	0811-3192-213, 0822-3411-5208, 0813-3402-5712	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kota Surabaya	</td><td>	Surabaya Kota	</td><td>	SBK	</td><td>	Jl. Semut Kali, Pergudangan PJKA Pintu no. 9, Pergudangan Stasiun Surabaya Kota	</td><td>	0811-3224-0917, 0857-4981-1247, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kota Surabaya	</td><td>	Surabaya Pasar Turi	</td><td>	SBI	</td><td>	Jl. Cepu, Pergudangan Stasiun Surabaya Pasar Turi, Pintu No.2, Kel. Gundih, Kec. Bubutan, Kota Surabaya	</td><td>	0811-3192-202, 0857-0604-3062, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kota Surabaya	</td><td>	Surabaya Pusat	</td><td>	SUB	</td><td>	Jl. Sulawesi no 14, Kel. Ngagel, Kec. Wonokromo, Kota surabaya	</td><td>	0811-3112-0610, 0812-4993-4004, 	</td></tr>
+<tr><td>	Jawa Timur	</td><td>	Kota Surabaya	</td><td>	Surabaya Rungkut	</td><td>	SBY-RKT	</td><td>	Jl. Raya Kendalsari No.30, Penjaringan Sari, Kec. Rungkut, Kota Surabaya, Jawa Timur 60296. (Samping Kebun Bibit Wonorejo)	</td><td>	0811-3330-2684, 0857-3133-4261, 0812-4993-4004	</td></tr>
+<tr><td>	Bali	</td><td>	Kota Denpasar	</td><td>	Bali	</td><td>	BLI	</td><td>	Jl. Mahendradatta 999 E, Kel/Desa Tegal Kertha, Kec. Denpasar Barat, Kota Denpasar, Bali	</td><td>	0821-4713-6820, , 	</td></tr>
 
-<script>
-    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Ambil nilai dari input form
-        var senderName = document.getElementById('senderName').value;
-        var senderPhone = document.getElementById('senderPhone').value;
-        var pickupAddress = document.getElementById('pickupAddress').value;
-        var itemCount = document.getElementById('itemCount').value;
-        var receiverName = document.getElementById('receiverName').value;
-        var receiverPhone = document.getElementById('receiverPhone').value;
-        var fullAddress = document.getElementById('fullAddress').value;
-        var paymentMethod = document.getElementById('paymentMethod').value;
-
-        // Format pesan WhatsApp
-        var message = `Halo, saya ingin memesan:%0A%0A` +
-                      `Nama Pengirim: ${encodeURIComponent(senderName)}%0A` +
-                      `Nomor Telp Pengirim: ${encodeURIComponent(senderPhone)}%0A` +
-                      `Alamat Pickup: ${encodeURIComponent(pickupAddress)}%0A%0A` +
-                      `Jumlah Barang: ${encodeURIComponent(itemCount)}%0A%0A` +
-                      `Nama Penerima: ${encodeURIComponent(receiverName)}%0A` +
-                      `Nomor Telp Penerima: ${encodeURIComponent(receiverPhone)}%0A` +
-                      `Alamat Lengkap: ${encodeURIComponent(fullAddress)}%0A%0A` +
-                      `Cara Bayar: ${encodeURIComponent(paymentMethod)}%0A%0A` +
-                      `Informasi Pembayaran Bank :%0A` +
-                      `Atas Nama: .............a%0A` +
-                      `No Rekening: .............%0A%0A` +
-                      `*DIMOHON UNTUK MENGIRIMKAN BUKTI TRANSFER.*`;
-
-        // Nomor WhatsApp tujuan
-        var whatsappNumber = '6281131118050';  // Ganti dengan nomor WhatsApp yang sesuai
-
-        // Redirect ke WhatsApp
-        var whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
-        window.open(whatsappUrl, '_blank');
-    });
-</script>
-
-</body>
+      </tbody>
+    </table>
+  </body>
 </html>
