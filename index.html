@@ -135,14 +135,20 @@
             </select>
         </div>
 
+        <!-- Unggah Gambar -->
+        <div class="form-group">
+            <label for="uploadImage">Unggah Gambar (opsional):</label>
+            <input type="file" id="uploadImage" name="uploadImage" accept="image/*">
+        </div>
+
         <button type="submit" class="btn-submit">Kirim Order</button>
     </form>
 
     <!-- Informasi Bank BCA -->
     <div class="bank-info">
         <strong>Informasi Pembayaran Bank BCA</strong>
-        <p>Atas Nama: ...........</p>
-        <p>No Rekening: ...........</p>
+        <p>Atas Nama: ........</p>
+        <p>No Rekening: ..........</p>
         <p><em>*DIMOHON UNTUK MENGIRIMKAN BUKTI TRANSFER.</em></p>
     </div>
 
@@ -152,7 +158,7 @@
 <script>
     document.getElementById('checkoutForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
         // Ambil nilai dari input form
         var senderName = document.getElementById('senderName').value;
         var senderPhone = document.getElementById('senderPhone').value;
@@ -184,6 +190,8 @@
         // Redirect ke WhatsApp
         var whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
         window.open(whatsappUrl, '_blank');
+
+        alert('Silakan tambahkan gambar manual di WhatsApp setelah diarahkan.');
     });
 </script>
 
